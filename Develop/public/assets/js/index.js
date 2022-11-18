@@ -42,9 +42,9 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
-const removeNote = (id) =>
+const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
-    method: 'REMOVE',
+    method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -67,11 +67,11 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
-  const freshNote = {
+  const newNote = {
     title: noteTitle.value,
     text: noteText.value,
   };
-  saveNote(freshNote).then(() => {
+  saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -79,7 +79,7 @@ const handleNoteSave = () => {
 
 // Delete the clicked note
 const handleNoteDelete = (e) => {
-  // Prevents the click listener for the list from being called when the button inside of it is clicked
+  // prevents the click listener for the list from being called when the button inside of it is clicked
   e.stopPropagation();
 
   const note = e.target;
@@ -89,7 +89,7 @@ const handleNoteDelete = (e) => {
     activeNote = {};
   }
 
-  removeNote(noteId).then(() => {
+  deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
   });
@@ -131,7 +131,6 @@ const renderNoteList = async (notes) => {
     liEl.classList.add('list-group-item');
 
     const spanEl = document.createElement('span');
-    spanEl.classList.add('list-item-title');
     spanEl.innerText = text;
     spanEl.addEventListener('click', handleNoteView);
 
