@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 // creating environment variable port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 
 // asks express to create a route for every file in the 'public' folder and give it a '/' route
