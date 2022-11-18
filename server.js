@@ -39,7 +39,7 @@ function createFreshNote(body, notesArray) {
     notesArray.push(note);
 
     fs.writeFileSync(
-        path.join(__dirname, '../db/db.json'),
+        path.join(__dirname, './db/db.json'),
         JSON.stringify({
             notes: notesArray
         }, null, 2)
@@ -59,7 +59,7 @@ function removeNote(id, notesArray) {
     }
 
     fs.writeFileSync(
-        path.join(__dirname, '../db/db.json'),
+        path.join(__dirname, './db/db.json'),
         JSON.stringify({
             notes: notesArray
         }, null, 2)
