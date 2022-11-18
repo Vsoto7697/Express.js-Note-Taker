@@ -76,7 +76,7 @@ function removeNote(id, notesArray) {
     }
 }
 
-app.delete('/api/notes/:id', (req, res) => {
+app.remove('/api/notes/:id', (req, res) => {
     removeNote(req.params.id, theNotes);
     res.json(true);
 });
