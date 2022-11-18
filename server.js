@@ -1,11 +1,13 @@
 const PORT = process.env.PORT || 3001;
 const fs = require('fs');
 const path = require('path');
+
 const express = require('express');
 // instantiate the server
 const app = express();
+
 // tell server to listen for requests
-const theNotes = require('./Develop/db/db.json');
+const theNotes = require('/Develop/db/db.json');
 
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
@@ -20,15 +22,15 @@ app.get('/api/notes', (req, res) => {
 
 // create routes to serve index.html and notes.html
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './Develop/public/index.html'));
+    res.sendFile(path.join(__dirname, '/Develop/public/index.html'));
 });
 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
+    res.sendFile(path.join(__dirname, '/Develop/public/notes.html'));
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './Develop/public/index.html'));
+    res.sendFile(path.join(__dirname, '/Develop/public/index.html'));
 });
 
 // function to create new note of user choice
@@ -65,7 +67,7 @@ function removeNote(id, notesArray) {
         if (note.id == id) {
             notesArray.splice(i, 1);
             fs.writeFileSync(
-                path.join(__dirname, './Develop/db/db.json'),
+                path.join(__dirname, '/Develop/db/db.json'),
                 JSON.stringify(notesArray, null, 2)
             );
 
