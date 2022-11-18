@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 
 // tell server to listen for requests
-const theNotes = require('./Develop/db/db.json');
+const allNotes = require('./Develop/db/db.json');
 
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 //handle requests for notes
 app.get('/api/notes', (req, res) => {
-    res.json(theNotes.slice(1));
+    res.json(allNotes.slice(1));
 });
 
 // create routes to serve index.html and notes.html
@@ -55,7 +55,7 @@ function createNewNote(body, notesArray) {
 
 // added post route to notes endpoint
 app.post('/api/notes', (req, res) => {
-    const newNote = createNewNote(req.body, theNotes);
+    const newNote = createNewNote(req.body, allNotes);
     res.json(newNote);
 });
 
