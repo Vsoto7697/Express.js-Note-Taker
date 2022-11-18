@@ -35,7 +35,7 @@ app.get('*', (req, res) => {
 
 // function to create new note of user choice
 function createFreshNote(body, notesArray) {
-    const frehNote = body;
+    const freshNote = body;
     if (!Array.isArray(notesArray))
         notesArray = [];
     
