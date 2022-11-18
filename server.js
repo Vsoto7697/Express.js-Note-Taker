@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 
 // tell server to listen for requests
-const allNotes = require('./db/db.json');
+const theNotes = require('./db/db.json');
 
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 //handle requests for notes
 app.get('/api/notes', (req, res) => {
-    res.json(allNotes.slice(1));
+    res.json(theNotes.slice(1));
 });
 
 // create routes to serve index.html and notes.html
@@ -34,8 +34,8 @@ app.get('*', (req, res) => {
 });
 
 // function to create new note of user choice
-function createNewNote(body, notesArray) {
-    const newNote = body;
+function createFreshNote(body, notesArray) {
+    const freshNote = body;
     if (!Array.isArray(notesArray))
         notesArray = [];
     
@@ -45,22 +45,22 @@ function createNewNote(body, notesArray) {
     body.id = notesArray[0];
     notesArray[0]++;
 
-    notesArray.push(newNote);
+    notesArray.push(freshNote);
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
         JSON.stringify(notesArray, null, 2)
     );
-    return newNote;
+    return freshNote;
 }
 
 // added post route to notes endpoint
 app.post('/api/notes', (req, res) => {
-    const newNote = createNewNote(req.body, allNotes);
-    res.json(newNote);
+    const freshNote = createFreshNote(req.body, theNotes);
+    res.json(freshNote);
 });
 
 //function to remove note of user's choice
-function deleteNote(id, notesArray) {
+function removeNote(id, notesArray) {
     for (let i = 0; i < notesArray.length; i++) {
         let note = notesArray[i];
 
@@ -77,7 +77,7 @@ function deleteNote(id, notesArray) {
 }
 
 app.delete('/api/notes/:id', (req, res) => {
-    deleteNote(req.params.id, allNotes);
+    removeNote(req.params.id, theNotes);
     res.json(true);
 });
 
@@ -87,6 +87,6 @@ app.listen(PORT, () => {
   });
 
   module.exports = {
-    createNewNote,
-    deleteNote
+    createFreshNote,
+    removeNote
 };
