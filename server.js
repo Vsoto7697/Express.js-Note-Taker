@@ -18,6 +18,7 @@ app.get('/api/notes', (req, res) => {
     res.json(theNotes.slice(1));
 });
 
+// create routes to serve index.html and notes.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './Develop/public/index.html'));
 });
