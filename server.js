@@ -34,8 +34,8 @@ app.get('*', (req, res) => {
 });
 
 // function to create new note of user choice
-function createFreshNote(body, notesArray) {
-    const freshNote = body;
+function createNewNote(body, notesArray) {
+    const newNote = body;
     if (!Array.isArray(notesArray))
         notesArray = [];
     
@@ -45,22 +45,22 @@ function createFreshNote(body, notesArray) {
     body.id = notesArray[0];
     notesArray[0]++;
 
-    notesArray.push(freshNote);
+    notesArray.push(newNote);
     fs.writeFileSync(
         path.join(__dirname, './Develop/db/db.json'),
         JSON.stringify(notesArray, null, 2)
     );
-    return freshNote;
+    return newNote;
 }
 
 // added post route to notes endpoint
 app.post('/api/notes', (req, res) => {
-    const freshNote = createFreshNote(req.body, theNotes);
-    res.json(freshNote);
+    const newNote = createNewNote(req.body, theNotes);
+    res.json(newNote);
 });
 
 //function to remove note of user's choice
-function removeNote(id, notesArray) {
+function deleteNote(id, notesArray) {
     for (let i = 0; i < notesArray.length; i++) {
         let note = notesArray[i];
 
@@ -76,8 +76,8 @@ function removeNote(id, notesArray) {
     }
 }
 
-app.remove('/api/notes/:id', (req, res) => {
-    removeNote(req.params.id, theNotes);
+app.delete('/api/notes/:id', (req, res) => {
+    deleteNote(req.params.id, allNotes);
     res.json(true);
 });
 
