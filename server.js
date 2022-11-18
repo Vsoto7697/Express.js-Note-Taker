@@ -14,7 +14,7 @@ const database = require("./db/db")
 //======================================================================
 
 var app = express();
-var PORT = process.env.PORT || 3001;
+var PORT = process.env.PORT || 3000;
 
 //==============================================================================
 // Gotta link to my assets!
@@ -33,12 +33,12 @@ app.use(express.json());
 //==============================================================================
 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "/public/index.html"));
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 // Notes html and it's "url"
 app.get("/notes", function (req, res) {
-    res.sendFile(path.join(__dirname, "/public/notes.html"));
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
 })
 
 //===============================================================================
@@ -54,7 +54,7 @@ app.route("/api/notes")
 
     // Add a new note to the json db file.
     .post(function (req, res) {
-        let jsonFilePath = path.join(__dirname, "/db/db.json");
+        let jsonFilePath = path.join(__dirname, "./db/db.json");
         let newNote = req.body;
 
         // This allows the test note to be the original note.
@@ -95,7 +95,7 @@ app.route("/api/notes")
 //=================================================================
 
 app.delete("/api/notes/:id", function (req, res) {
-    let jsonFilePath = path.join(__dirname, "/db/db.json");
+    let jsonFilePath = path.join(__dirname, "./db/db.json");
     // request to delete note by id.
     for (let i = 0; i < database.length; i++) {
 
