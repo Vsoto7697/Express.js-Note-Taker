@@ -9,7 +9,7 @@ const htmlRoutes = require('./routes/htmlRoutes');
 const app = express();
 
 // Set PORT
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 // Parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
