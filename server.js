@@ -1,26 +1,28 @@
 // Dependencies
 const express = require('express');
 
-// app use express
+// Point Server to the route files
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
+
+// Create an express server
 const app = express();
 
-// creating environment variable port
-const PORT = process.env.PORT || 3000;
+// Set PORT
+const PORT = process.env.PORT || 3001;
 
-
-// asks express to create a route for every file in the 'public' folder and give it a '/' route
-app.use(express.static('public'));
-// sets up express app to handel data parser, middle wear created req.body
+// Parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
+
+// Parse incoming JSON data
 app.use(express.json());
 
 
-// routes to route files
-require('/routes/apiRoutes')(app);
-require('/routes/htmlRoutes')(app);
+app.use(express.static('public'));
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
-
-// app listener - starts the server
+// Listener
 app.listen(PORT, () => {
-  console.log(`Server available at localhost${PORT}`);
+    console.log(`API server is ready on port ${PORT}!`);
 });
