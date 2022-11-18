@@ -7,7 +7,9 @@ const app = express();
 // tell server to listen for requests
 const theNotes = require('./Develop/db/db.json');
 
+// parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
+// parse incoming JSON data
 app.use(express.json());
 app.use(express.static('public'));
 
