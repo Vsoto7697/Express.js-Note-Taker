@@ -55,8 +55,3 @@ function removeNote(id, notesArray) {
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
   });
-
-  module.exports = {
-    createFreshNote,
-    removeNote
-};
