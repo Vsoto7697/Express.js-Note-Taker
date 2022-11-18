@@ -48,6 +48,7 @@ function createFreshNote(body, notesArray) {
     return freshNote;
 }
 
+// added post route to notes endpoint
 app.post('/api/notes', (req, res) => {
     const freshNote = createFreshNote(req.body, theNotes);
     res.json(freshNote);
