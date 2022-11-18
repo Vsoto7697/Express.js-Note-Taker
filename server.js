@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
+//handle requests for notes
 app.get('/api/notes', (req, res) => {
     res.json(theNotes.slice(1));
 });
