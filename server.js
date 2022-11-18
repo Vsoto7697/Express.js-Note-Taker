@@ -35,7 +35,7 @@ app.get('*', (req, res) => {
 
 // function to create new note of user choice
 function createFreshNote(body, notesArray) {
-    const newNote = body;
+    const frehNote = body;
     if (!Array.isArray(notesArray))
         notesArray = [];
     
@@ -45,7 +45,7 @@ function createFreshNote(body, notesArray) {
     body.id = notesArray[0];
     notesArray[0]++;
 
-    notesArray.push(newNote);
+    notesArray.push(freshNote);
     fs.writeFileSync(
         path.join(__dirname, './Develop/db/db.json'),
         JSON.stringify(notesArray, null, 2)
