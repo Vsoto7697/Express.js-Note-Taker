@@ -35,51 +35,36 @@ app.get('*', (req, res) => {
 
 // function to create new note of user choice
 function createFreshNote(body, notesArray) {
-    const freshNote = body;
-    if (!Array.isArray(notesArray))
-        notesArray = [];
-    
-    if (notesArray.length === 0)
-        notesArray.push(0);
+    const note = body;
+    notesArray.push(note);
 
-    body.id = notesArray[0];
-    notesArray[0]++;
-
-    notesArray.push(freshNote);
     fs.writeFileSync(
-        path.join(__dirname, './db/db.json'),
-        JSON.stringify(notesArray, null, 2)
-    );
-    return freshNote;
-}
+        path.join(__dirname, '../db/db.json'),
+        JSON.stringify({
+            notes: notesArray
+        }, null, 2)
+    )
 
-// added post route to notes endpoint
-app.post('/api/notes', (req, res) => {
-    const freshNote = createFreshNote(req.body, theNotes);
-    res.json(freshNote);
-});
+    return note;
+}
 
 //function to remove note of user's choice
 function removeNote(id, notesArray) {
-    for (let i = 0; i < notesArray.length; i++) {
-        let note = notesArray[i];
+    let deleteID = parseInt(id);
+    notesArray.splice(deleteID, 1);
 
-        if (note.id == id) {
-            notesArray.splice(i, 1);
-            fs.writeFileSync(
-                path.join(__dirname, './db/db.json'),
-                JSON.stringify(notesArray, null, 2)
-            );
-
-            break;
-        }
+    // The remaining notes' indexes are rewritten in this loop.
+    for (let i = deleteID; i < notesArray.length; i++) {
+        notesArray[i].id = i.toString();
     }
-}
 
-app.delete('/api/notes/:id', (req, res) => {
-    removeNote(req.params.id, theNotes);
-    res.json(true);
-});
+    fs.writeFileSync(
+        path.join(__dirname, '../db/db.json'),
+        JSON.stringify({
+            notes: notesArray
+        }, null, 2)
+    )
+}
 
 
 app.listen(PORT, () => {
