@@ -19,7 +19,7 @@
 
   ![Website Screenshot](./public/assets/images/websitescreenshot3.jpeg)
 
-  To visit please click on link [link](https://infinite-stream-95680.herokuapp.com/notes)
+  To visit please click on link [link](https://infinite-stream-95680.herokuapp.com)
   
   ## License  
   This project is covered under the No License license.
