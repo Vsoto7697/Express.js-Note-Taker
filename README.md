@@ -15,7 +15,11 @@
   The following images show the web application's appearance and functionality:
   ![Website Screenshot](.//assets/images/websitescreenshot.jpeg)
 
-  To visit please click on link [link](https://vsoto7697.github.io/Express.js-Note-Taker/)
+  ![Website Screenshot](.//assets/images/websitescreenshot2.jpeg)
+
+  ![Website Screenshot](.//assets/images/websitescreenshot3.jpeg)
+
+  To visit please click on link [link](https://infinite-stream-95680.herokuapp.com/notes)
   
   ## License  
   This project is covered under the No License license.
