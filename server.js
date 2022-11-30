@@ -3,17 +3,17 @@ const express = require("express");
 const fs = require("fs");
 const path = require('path');
 
-// Initialize express app
+// Set up the Express app.
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Setup data parsing
+// Configure data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname));
 
-//Require routes file
-require('./routes/routes')(app);
+//Require a file with routes
+require('./routes/noteroutes')(app);
 
 // Setup listener
 app.listen(PORT, function() {
