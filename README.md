@@ -13,11 +13,11 @@
 
   ## Usage
   The following images show the web application's appearance and functionality:
-  ![Website Screenshot](.//assets/images/websitescreenshot.jpeg)
+  ![Website Screenshot](./public/assets/images/websitescreenshot.jpeg)
 
-  ![Website Screenshot](.//assets/images/websitescreenshot2.jpeg)
+  ![Website Screenshot](./public/assets/images/websitescreenshot2.jpeg)
 
-  ![Website Screenshot](.//assets/images/websitescreenshot3.jpeg)
+  ![Website Screenshot](./public/assets/images/websitescreenshot3.jpeg)
 
   To visit please click on link [link](https://infinite-stream-95680.herokuapp.com/notes)
   
